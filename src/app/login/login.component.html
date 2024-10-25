@@ -1,0 +1,35 @@
+<div class="login-container">
+  <h2>Iniciar Sesión</h2>
+  <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+    <!-- Campo de Correo Electrónico -->
+    <mat-form-field appearance="outline" class="custom-input">
+      <mat-label><mat-icon>mail</mat-icon> Correo Electrónico</mat-label>
+      <input matInput formControlName="email" type="email" placeholder="Escribe tu correo electrónico" />
+      <mat-error *ngIf="loginForm.get('email')?.hasError('required')">El correo es obligatorio</mat-error>
+      <mat-error *ngIf="loginForm.get('email')?.hasError('email')">Ingresa un correo válido</mat-error>
+      <mat-error *ngIf="loginForm.get('email')?.hasError('pattern')">El correo debe ser válido y bien estructurado</mat-error>
+    </mat-form-field>
+
+    <!-- Campo de Contraseña -->
+    <mat-form-field appearance="outline" class="custom-input">
+      <mat-label><mat-icon>vpn_key</mat-icon> Contraseña</mat-label>
+      <input matInput [type]="hidePassword ? 'password' : 'text'" formControlName="password" placeholder="Escribe tu contraseña" />
+      <button mat-icon-button matSuffix type="button" (click)="togglePasswordVisibility()">
+        <mat-icon>{{ hidePassword ? 'visibility_off' : 'visibility' }}</mat-icon>
+      </button>
+      <mat-error *ngIf="loginForm.get('password')?.hasError('required')">La contraseña es obligatoria</mat-error>
+      <mat-error *ngIf="loginForm.get('password')?.hasError('minlength')">La contraseña debe tener al menos 8 caracteres</mat-error>
+      <mat-error *ngIf="loginForm.get('password')?.hasError('pattern')">Debe contener una mayúscula, una minúscula, un número y un carácter especial</mat-error>
+    </mat-form-field>
+
+    <!-- Botón de Iniciar Sesión -->
+    <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid" class="login-button">
+      Iniciar sesión
+    </button>
+
+    <!-- Mensaje de éxito al completar los campos -->
+    <div *ngIf="formValid && loginForm.valid" class="success-message">
+      ¡Formulario correcto! Inicie sesión.
+    </div>
+  </form>
+</div>

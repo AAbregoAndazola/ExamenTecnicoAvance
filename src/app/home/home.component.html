@@ -1,0 +1,78 @@
+<div class="home-container">
+  <h2 *ngIf="userName">¡Bienvenido de nuevo, {{ userName }}!</h2>
+
+  <!-- Carousel de imágenes -->
+  <div class="custom-carousel-container">
+    <button class="carousel-nav-button prev-button" (click)="previousSlide()">&#10094;</button>
+    <div class="carousel-slide">
+      <img [src]="carouselImages[currentIndex].src" alt="{{ carouselImages[currentIndex].caption }}"
+        class="carousel-image" />
+      <div class="carousel-caption">{{ carouselImages[currentIndex].caption }}</div>
+    </div>
+    <button class="carousel-nav-button next-button" (click)="nextSlide()">&#10095;</button>
+
+    <div class="carousel-indicators">
+      <span *ngFor="let image of carouselImages; let i = index" class="indicator-dot"
+        [class.active]="i === currentIndex" (click)="goToSlide(i)"></span>
+    </div>
+  </div>
+
+  <!-- Sección de tarjetas -->
+  <div class="card-container">
+    <div class="card" *ngFor="let card of cards">
+      <img [src]="card.image" alt="{{ card.title }}" class="card-image" (click)="openImageModal(card)">
+      <h3>{{ card.title }}</h3>
+      <p>
+        <!-- Mostrar una versión truncada del texto si no se ha expandido -->
+        {{ card.expanded ? card.description : (card.description | slice:0:100) + '...' }}
+      </p>
+      <button mat-button (click)="toggleCardExpansion(card)">
+        {{ card.expanded ? 'Leer menos' : 'Leer más' }}
+      </button>
+    </div>
+  </div>
+
+  <!-- Modal para mostrar la imagen en grande -->
+  <div *ngIf="selectedCard" class="image-modal">
+    <div class="modal-content">
+      <span class="close-button" (click)="closeImageModal()">&times;</span>
+      <img [src]="selectedCard.image" alt="{{ selectedCard.title }}" class="modal-image" />
+      <h3>{{ selectedCard.title }}</h3>
+      <p>{{ selectedCard.description }}</p>
+    </div>
+  </div>
+
+  
+
+  <div class="about-us-section">
+    <h2>Acerca de Nosotros</h2>
+    <div class="about-us-cards">
+      <div class="about-card">
+        <img src="assets/equipo.jpg" alt="Equipo" class="about-icon">
+        <h3>Nuestro Equipo</h3>
+        <p>Un grupo de profesionales apasionados, dedicados a construir experiencias web innovadoras y sostenibles.</p>
+      </div>
+      <div class="about-card">
+        <img src="assets/mision.png" alt="Misión" class="about-icon">
+        <h3>Nuestra Misión</h3>
+        <p>Innovar y crear soluciones tecnológicas que mejoren la calidad de vida y el entorno digital.</p>
+      </div>
+      <div class="about-card">
+        <img src="assets/valores.jpg" alt="Valores" class="about-icon">
+        <h3>Nuestros Valores</h3>
+        <p>Compromiso, creatividad, y calidad en cada proyecto que realizamos, siempre pensando en el usuario final.</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="selectedItem" class="selected-item-container">
+    <h3>{{ selectedItem.alt_description || 'Imagen seleccionada' }}</h3>
+    <img [src]="selectedItem.urls.regular" alt="{{ selectedItem.alt_description }}" class="selected-item-image" />
+  </div>
+
+  
+
+  <div class="listado-button">
+    <button mat-raised-button color="primary" routerLink="/listado">Ir al Listado</button>
+  </div>
+</div>

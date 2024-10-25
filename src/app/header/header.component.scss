@@ -1,0 +1,153 @@
+.header {
+  position: sticky; /* Hace que el header se quede fijo cuando haces scroll */
+  top: 0; /* Pegado al tope de la página */
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95); /* Fondo semitransparente */
+  backdrop-filter: blur(10px); /* Añade un efecto de desenfoque al fondo */
+  transition: all 0.3s ease; /* Transición suave cuando el usuario hace scroll */
+  
+  /* Añadimos una sombra solo cuando se hace scroll */
+  &.scrolled {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar un efecto flotante */
+  }
+  
+  /* Aseguramos que el contenido debajo del header no se superponga */
+  height: 70px; /* Altura del header */
+}
+
+.custom-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Alinea verticalmente todos los elementos */
+  padding: 0 24px;
+  height: 70px;
+  transition: all 0.3s ease;
+}
+
+
+/* Estilo para el logo */
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  height: 40px;
+  transition: transform 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.05); /* Un pequeño efecto al pasar el mouse por el logo */
+}
+
+/* Estilo para las demás secciones del header */
+.nav-buttons {
+  display: flex;
+  gap: 16px;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.nav-item:hover {
+  background: rgba(0, 0, 0, 0.05); /* Efecto hover */
+}
+
+.nav-item.active {
+  background: #007bff;
+  color: white;
+}
+
+.search-container {
+  flex: 1; /* Permite que el contenedor de búsqueda ocupe todo el espacio disponible */
+  display: flex; /* Asegura que los elementos dentro del contenedor estén alineados */
+  justify-content: center; /* Alinea el input de búsqueda en el centro horizontalmente */
+  max-width: 500px; /* Ajusta el ancho máximo de la barra de búsqueda */
+  margin: 0 32px; /* Añade margen para separación lateral */
+  transition: all 0.3s ease;
+  padding: 0; /* Asegura que no haya padding que pueda cortar la parte superior */
+}
+
+.search-container {
+  flex: 1; /* Permite que el contenedor de búsqueda ocupe todo el espacio disponible */
+  display: flex; /* Asegura que los elementos dentro del contenedor estén alineados */
+  justify-content: center; /* Alinea el input de búsqueda en el centro horizontalmente */
+  max-width: 500px; /* Ajusta el ancho máximo de la barra de búsqueda */
+  margin: 0 32px; /* Añade margen para separación lateral */
+  transition: all 0.3s ease;
+  padding: 0; /* Asegura que no haya padding que pueda cortar la parte superior */
+}
+
+.search-bar {
+  width: 100%; /* Asegura que la barra de búsqueda ocupe todo el espacio del contenedor */
+  height: 100%; /* Mantiene la altura del input adecuada */
+  
+  input {
+    height: 100%; /* Asegura que el input esté completo verticalmente */
+    padding: 10px; /* Añade un padding interno cómodo */
+    font-size: 1rem; /* Ajusta el tamaño de fuente */
+  }
+
+  mat-icon {
+    margin-right: 8px; /* Añade algo de espacio entre el icono y el texto */
+  }
+}
+
+.search-container.active {
+  transform: scale(1.02); /* Animación para hacer crecer el input cuando está enfocado */
+}
+
+.user-section button {
+  transition: transform 0.2s ease;
+}
+
+.user-section button:hover {
+  transform: scale(1.1);
+}
+
+.menu-toggle {
+  display: none;
+}
+
+/* Estilos para pantallas móviles */
+@media (max-width: 768px) {
+  .nav-buttons {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background: white;
+    flex-direction: column;
+    padding: 16px;
+    transform: translateY(-100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-buttons.nav-visible {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  .search-container {
+    display: none;
+  }
+
+  .search-bar {
+    width: 100%; 
+  }
+}
