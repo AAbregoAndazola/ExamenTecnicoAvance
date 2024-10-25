@@ -1,6 +1,6 @@
 <header class="header" [class.scrolled]="isScrolled">
   <mat-toolbar class="custom-header">
-    <!-- Logo Section -->
+    
     <div class="header-left" [class.scrolled]="isScrolled">
       <div class="logo-container">
         <img src="assets/over.png" alt="Logo" class="logo" />
@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <!-- Search Section -->
+   
     <div class="search-container" [class.active]="isSearchFocused">
       <mat-form-field appearance="outline" class="search-bar">
         <mat-icon matPrefix>search</mat-icon>
@@ -25,7 +25,7 @@
       </mat-form-field>
     </div>
 
-    <!-- Navigation -->
+    
     <nav class="nav-buttons" [class.nav-visible]="isMenuOpen">
       <button mat-button routerLink="/" class="nav-item" routerLinkActive="active">
         <mat-icon>home</mat-icon>
@@ -41,7 +41,7 @@
       </button>
     </nav>
 
-    <!-- User Section -->
+    
     <div class="user-section">
       <button mat-icon-button *ngIf="!isLoggedIn" routerLink="/login" class="login-btn">
         <mat-icon>person</mat-icon>
@@ -51,7 +51,7 @@
       </button>
     </div>
 
-    <!-- Mobile Menu Button -->
+    
     <button mat-icon-button class="menu-toggle" (click)="toggleMenu()">
       <mat-icon>{{ isMenuOpen ? 'close' : 'menu' }}</mat-icon>
     </button>

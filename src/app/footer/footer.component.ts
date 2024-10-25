@@ -49,7 +49,7 @@ export class FooterComponent {
       this.isSubscribing = true;
       
       try {
-        // Simular llamada al servidor
+        
         await new Promise(resolve => setTimeout(resolve, 1000));
         
         this.snackBar.open(

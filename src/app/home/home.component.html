@@ -1,7 +1,7 @@
 <div class="home-container">
   <h2 *ngIf="userName">¡Bienvenido de nuevo, {{ userName }}!</h2>
 
-  <!-- Carousel de imágenes -->
+  
   <div class="custom-carousel-container">
     <button class="carousel-nav-button prev-button" (click)="previousSlide()">&#10094;</button>
     <div class="carousel-slide">
@@ -17,13 +17,13 @@
     </div>
   </div>
 
-  <!-- Sección de tarjetas -->
+  
   <div class="card-container">
     <div class="card" *ngFor="let card of cards">
       <img [src]="card.image" alt="{{ card.title }}" class="card-image" (click)="openImageModal(card)">
       <h3>{{ card.title }}</h3>
       <p>
-        <!-- Mostrar una versión truncada del texto si no se ha expandido -->
+        
         {{ card.expanded ? card.description : (card.description | slice:0:100) + '...' }}
       </p>
       <button mat-button (click)="toggleCardExpansion(card)">
@@ -32,7 +32,7 @@
     </div>
   </div>
 
-  <!-- Modal para mostrar la imagen en grande -->
+  
   <div *ngIf="selectedCard" class="image-modal">
     <div class="modal-content">
       <span class="close-button" (click)="closeImageModal()">&times;</span>
